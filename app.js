@@ -434,7 +434,7 @@ document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
 $('#marqueeTrack').innerHTML = Array(2).fill(['Full-Grain Leather', 'Saddle-Stitched Seams', 'Solid Brass Hardware', 'Handcrafted in Small Batches', 'Free Worldwide Delivery — Always Included', '30-Day Easy Returns'].map(t => `<span>${t} ◆</span>`).join('')).join('');
 
 /* init */
-fillCats(); renderFeatured(); rotateHero(); renderCraftRows(); renderShop(); renderGrades(); renderQuotes(); restartQuotes(); updateBadges(); renderCart();
+fillCats(); renderFeatured(); rotateHero(); renderCraftRows(); document.querySelectorAll('#craftRows .reveal').forEach(el => io.observe(el)); renderShop(); renderGrades(); renderQuotes(); restartQuotes(); updateBadges(); renderCart();
 $('#curUSD').classList.toggle('active', currency === 'USD'); $('#curGBP').classList.toggle('active', currency === 'GBP'); refreshPrices();
 
 /* ---------- premium motion layer ---------- */

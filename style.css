@@ -179,7 +179,9 @@ header{position:sticky;top:0;z-index:60;background:rgba(13,10,6,.82);backdrop-fi
 .patina-frame img{width:100%;height:440px;object-fit:cover}
 .patina-top{position:absolute;inset:0;clip-path:inset(0 0 0 50%)}
 .patina-top img{filter:sepia(42%) saturate(158%) brightness(83%) contrast(113%)}
-.patina-handle{position:absolute;top:0;bottom:0;left:50%;width:3px;background:var(--grad-gold);transform:translateX(-50%);box-shadow:0 0 18px rgba(212,175,55,.7);pointer-events:none}
+.patina-handle{position:absolute;top:0;bottom:0;left:50%;width:48px;transform:translateX(-50%);pointer-events:none;z-index:3}
+.patina-handle::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:3px;transform:translateX(-50%);background:var(--grad-gold);box-shadow:0 0 18px rgba(212,175,55,.7)}
+.patina-frame{cursor:ew-resize;touch-action:none}
 .patina-handle::after{content:"◂ ▸";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--grad-gold);color:#241a05;font-size:.72rem;font-weight:700;padding:.42rem .55rem;border-radius:999px;white-space:nowrap}
 .patina-labels{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;padding:.9rem 1.2rem;color:#fff;font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:.75rem;background:linear-gradient(transparent,rgba(8,5,3,.78));pointer-events:none;z-index:2}
 #patinaRange{width:100%;margin:1.4rem 0 .5rem;accent-color:var(--gold);height:8px;cursor:pointer}

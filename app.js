@@ -383,12 +383,21 @@ const PATINA_TEXT = [
  'Year one — honey tones deepen; the hide now knows your routine.',
  'Year three — rich caramel character, scratches buffed into story.',
  'Year five — a dark, glossy patina no factory could ever fake. Yours alone.'];
-$('#patinaRange').addEventListener('input', e => {
-  const v = +e.target.value;
+function setPatina(v){
+  v = Math.max(0, Math.min(100, v));
   $('#patinaTop').style.clipPath = `inset(0 0 0 ${v}%)`;
   $('#patinaHandle').style.left = v + '%';
   $('#patinaReadout').textContent = PATINA_TEXT[Math.min(4, Math.floor(v / 21))];
-});
+}
+const pFrame = document.querySelector('.patina-frame');
+if (pFrame){
+  let pDrag = false;
+  const pFromEvent = e => { const r = pFrame.getBoundingClientRect(); setPatina((e.clientX - r.left) / r.width * 100); };
+  pFrame.addEventListener('pointerdown', e => { pDrag = true; try { pFrame.setPointerCapture(e.pointerId); } catch(_){} pFromEvent(e); });
+  pFrame.addEventListener('pointermove', e => { if (pDrag) pFromEvent(e); });
+  ['pointerup','pointercancel'].forEach(ev => pFrame.addEventListener(ev, () => { pDrag = false; }));
+}
+setPatina(50);
 
 /* grades */
 function renderGrades(active = 0){

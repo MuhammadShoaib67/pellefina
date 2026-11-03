@@ -205,7 +205,12 @@ function renderCraftRows(){
     {t:'The Hair-On Collection', sub:'Real cowhide — every pattern one of one', items: products.filter(p => p.cat.startsWith('Hair-On')).slice(0, 8)},
     {t:'Everyday Essentials', sub:'Honest leather under $90', items: products.filter(p => p.price < 90).slice(0, 8)}
   ];
-  el.innerHTML = rows.map(r => `<div class="p-row reveal"><div class="p-row-head"><h3>${r.t}</h3><span>${r.sub}</span></div><div class="row-strip">${r.items.map(cardHTML).join('')}</div></div>`).join('');
+  el.innerHTML = rows.map(r => `<div class="p-row reveal"><div class="p-row-head"><h3>${r.t}</h3><span>${r.sub}</span></div><div class="strip-wrap"><button class="strip-arrow sa-prev" aria-label="Previous products">\u2039</button><div class="row-strip">${r.items.map(cardHTML).join('')}</div><button class="strip-arrow sa-next" aria-label="Next products">\u203a</button></div></div>`).join('');
+  el.querySelectorAll('.strip-wrap').forEach(w => {
+    const strip = w.querySelector('.row-strip');
+    w.querySelector('.sa-next').addEventListener('click', () => strip.scrollBy({ left: strip.clientWidth * 0.85, behavior: 'smooth' }));
+    w.querySelector('.sa-prev').addEventListener('click', () => strip.scrollBy({ left: -strip.clientWidth * 0.85, behavior: 'smooth' }));
+  });
 }
 function renderFeatured(){ $('#featuredGrid').innerHTML = products.slice(0, 4).map(cardHTML).join(''); }
 

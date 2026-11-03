@@ -383,3 +383,12 @@ footer{background:#080604;color:#b7a888;border-top:1px solid var(--line-soft)}
 .p-row-head span{color:var(--muted,#b8a888);font-size:.9rem}
 .row-strip{display:flex;gap:1.1rem;overflow-x:auto;padding:.4rem .2rem 1rem;scroll-snap-type:x mandatory;scrollbar-width:thin}
 .row-strip .card{min-width:235px;max-width:235px;scroll-snap-align:start}
+
+/* row strip arrows */
+.strip-wrap{position:relative}
+.strip-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:44px;height:44px;border-radius:50%;border:1px solid rgba(212,175,55,.55);background:rgba(13,10,6,.88);color:#e9c767;font-size:1.7rem;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;backdrop-filter:blur(3px);transition:background .2s,transform .2s}
+.strip-arrow:hover{background:rgba(60,44,10,.95);transform:translateY(-50%) scale(1.07)}
+.sa-prev{left:4px}
+.sa-next{right:4px}
+.row-strip{scrollbar-width:none}
+.row-strip::-webkit-scrollbar{display:none}

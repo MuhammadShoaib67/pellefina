@@ -394,3 +394,7 @@ footer{background:#080604;color:#b7a888;border-top:1px solid var(--line-soft)}
 .sa-next{right:4px}
 .row-strip{scrollbar-width:none}
 .row-strip::-webkit-scrollbar{display:none}
+
+.patina-frame img{-webkit-user-drag:none;user-select:none;-webkit-user-select:none}
+.patina-frame{-webkit-user-select:none;user-select:none}
+.patina-handle{touch-action:none}

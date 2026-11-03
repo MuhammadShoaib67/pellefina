@@ -393,7 +393,8 @@ const pFrame = document.querySelector('.patina-frame');
 if (pFrame){
   let pDrag = false;
   const pFromEvent = e => { const r = pFrame.getBoundingClientRect(); setPatina((e.clientX - r.left) / r.width * 100); };
-  pFrame.addEventListener('pointerdown', e => { pDrag = true; try { pFrame.setPointerCapture(e.pointerId); } catch(_){} pFromEvent(e); });
+  pFrame.addEventListener('dragstart', e => e.preventDefault());
+  pFrame.addEventListener('pointerdown', e => { e.preventDefault(); pDrag = true; try { pFrame.setPointerCapture(e.pointerId); } catch(_){} pFromEvent(e); });
   pFrame.addEventListener('pointermove', e => { if (pDrag) pFromEvent(e); });
   ['pointerup','pointercancel'].forEach(ev => pFrame.addEventListener(ev, () => { pDrag = false; }));
 }

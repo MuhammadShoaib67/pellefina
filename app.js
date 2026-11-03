@@ -190,13 +190,6 @@ function rotateHero(){
   const p = pool[Math.floor(Math.random() * pool.length)];
   const img = document.querySelector('#heroCard img');
   if (img){ img.src = p.img; img.alt = 'Pellefina ' + p.name; }
-  const foot = document.querySelector('.hero-card-foot');
-  if (foot){
-    foot.querySelector('strong').textContent = p.name.split(' — ')[0];
-    foot.querySelector('span').textContent = p.cat + ' · Premium full-grain hide';
-    const pr = foot.querySelector('.hero-price');
-    pr.dataset.price = p.price; pr.textContent = money(p.price);
-  }
 }
 function renderCraftRows(){
   const el = $('#craftRows'); if (!el) return;

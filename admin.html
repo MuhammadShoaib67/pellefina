@@ -139,7 +139,7 @@ th{color:#9a8a6d}th,td{border-color:#332818}
 
 <script>
 const LS = { p:'pf_products', o:'pf_orders', n:'pf_news' };
-const PASS = 'pellefina-admin';
+const PASS = 'pellefina';
 const load = (k,d)=>{ try{ const v=JSON.parse(localStorage.getItem(k)); return v??d; }catch{ return d; } };
 const save = (k,v)=>localStorage.setItem(k,JSON.stringify(v));
 const $ = s=>document.querySelector(s);

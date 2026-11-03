@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pellefina Admin — Store Control</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#171310;--cream:#f6f1e7;--paper:#fffdf8;--cognac:#b4713a;--gold:#c9a24b;--line:#e4dac6;--mut:#7a6f5f;--red:#b03a2e;--green:#2e7d4f}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink)}
+h1,h2,h3{font-family:'Playfair Display',serif}
+.wrap{max-width:1100px;margin:0 auto;padding:2rem 1.2rem 4rem}
+.top{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.6rem}
+.brand{font-family:'Playfair Display',serif;font-weight:900;letter-spacing:.2em;font-size:1.4rem}
+.brand small{display:block;font-family:'Jost',sans-serif;font-size:.68rem;letter-spacing:.24em;color:var(--cognac);font-weight:600}
+.btn{border:none;border-radius:999px;padding:.65rem 1.4rem;font-weight:600;cursor:pointer;font-family:inherit}
+.btn-gold{background:linear-gradient(135deg,#e8cf8f,var(--gold));color:#241a05}
+.btn-dark{background:var(--ink);color:var(--cream)}
+.btn-red{background:#f6e3e0;color:var(--red);border:1px solid #e2b6b0}
+.btn-ghost{background:transparent;border:1.5px solid var(--ink);color:var(--ink)}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:1.5rem;margin-bottom:1.6rem}
+.card h2{margin-bottom:1rem;font-size:1.35rem}
+label{display:block;font-size:.83rem;font-weight:600;margin-bottom:.8rem}
+input,select,textarea{width:100%;margin-top:.3rem;padding:.65rem .85rem;border:1.5px solid var(--line);border-radius:10px;font-family:inherit;background:#fff;font-weight:400}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.frow3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{padding:.6rem .5rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+th{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+td img{width:52px;height:52px;object-fit:cover;border-radius:10px}
+.mini{padding:.35rem .85rem;font-size:.8rem}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.6rem}
+.stat{background:var(--ink);color:var(--cream);border-radius:16px;padding:1.2rem}
+.stat strong{font-family:'Playfair Display',serif;font-size:1.8rem;color:#e8cf8f;display:block}
+.stat span{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:#bfb096}
+.order{border:1px solid var(--line);border-radius:14px;padding:1rem 1.2rem;margin-bottom:.9rem;background:#fff}
+.order h4{font-family:'Jost',sans-serif;font-size:1rem}
+.order p{color:var(--mut);font-size:.88rem;line-height:1.55}
+.order ul{margin:.4rem 0 .4rem 1.1rem;font-size:.9rem}
+#gate{position:fixed;inset:0;background:var(--ink);display:flex;align-items:center;justify-content:center;z-index:50;padding:1rem}
+.gate-box{background:var(--paper);border-radius:20px;padding:2.2rem;max-width:380px;width:100%;text-align:center}
+.gate-box h2{margin-bottom:.4rem}
+.gate-box p{color:var(--mut);font-size:.9rem;margin-bottom:1.2rem}
+.msg{min-height:1.2em;margin-top:.7rem;font-size:.9rem}
+.ok{color:var(--green)}.err{color:var(--red)}
+.note{font-size:.85rem;color:var(--mut);line-height:1.6}
+@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}.frow,.frow3{grid-template-columns:1fr}table{font-size:.82rem}}
+/* dark premium overrides */
+body{background:#0d0a06;color:#f3ead9}
+.card{background:#1a140d;border-color:#332818}
+input,select,textarea{background:#120d06;color:#f3ead9;border-color:#332818}
+th{color:#9a8a6d}th,td{border-color:#332818}
+.btn-ghost{border-color:#f3ead9;color:#f3ead9}
+.order{background:#211910;border-color:#332818}
+.gate-box{background:#1a140d;color:#f3ead9}
+.note{color:#9a8a6d}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="gate-box">
+    <h2>Pellefina Admin</h2>
+    <p>Enter the store passcode to manage products &amp; orders.</p>
+    <input type="password" id="passInput" placeholder="Passcode">
+    <p class="msg err" id="gateMsg"></p>
+    <button class="btn btn-gold" id="gateBtn" style="width:100%;margin-top:.6rem">Unlock Admin</button>
+  </div>
+</div>
+
+<div class="wrap" id="adminMain" hidden>
+  <div class="top">
+    <div class="brand">PELLEFINA<small>STORE ADMIN</small></div>
+    <div>
+      <a class="btn btn-ghost" href="index.html" style="text-decoration:none">← View Store</a>
+      <button class="btn btn-dark" id="lockBtn">Lock</button>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><strong id="stProducts">0</strong><span>Products Live</span></div>
+    <div class="stat"><strong id="stOrders">0</strong><span>Orders Received</span></div>
+    <div class="stat"><strong id="stRevenue">$0</strong><span>Order Value (USD)</span></div>
+    <div class="stat"><strong id="stNews">0</strong><span>Hide List Emails</span></div>
+  </div>
+
+  <div class="card">
+    <h2 id="formTitle">Add a New Product</h2>
+    <form id="prodForm">
+      <input type="hidden" id="fId">
+      <div class="frow">
+        <label>Product name<input id="fName" required placeholder="e.g. Roma Leather Tote"></label>
+        <label>Category
+          <select id="fCat"><option>Bags</option><option>Wallets</option><option>Accessories</option><option>Apparel</option></select>
+        </label>
+      </div>
+      <div class="frow3">
+        <label>Price (USD)<input id="fPrice" type="number" min="1" step="0.01" required placeholder="149"></label>
+        <label>Was price (USD, 0 = none)<input id="fWas" type="number" min="0" step="0.01" value="0"></label>
+        <label>Badge<input id="fBadge" placeholder="Bestseller / New / Limited"></label>
+      </div>
+      <div class="frow">
+        <label>Colours (comma separated)<input id="fColors" placeholder="Cognac, Black, Tan"></label>
+        <label>Rating + reviews (e.g. 4.9, 120)
+          <span style="display:flex;gap:.5rem"><input id="fRating" type="number" min="0" max="5" step="0.1" value="4.8"><input id="fReviews" type="number" min="0" value="0"></span>
+        </label>
+      </div>
+      <label>Image URL<input id="fImg" placeholder="https://… or upload below"></label>
+      <label>…or upload a photo from this device<input type="file" id="fFile" accept="image/*"></label>
+      <img id="fPreview" style="width:120px;height:120px;object-fit:cover;border-radius:12px;display:none;margin-bottom:.8rem">
+      <label>Description<textarea id="fDesc" rows="3" placeholder="What makes this piece special?"></textarea></label>
+      <label>Features (one per line)<textarea id="fFeats" rows="3" placeholder="Full-grain hide&#10;Hand-stitched"></textarea></label>
+      <button class="btn btn-gold" type="submit" id="saveBtn">Add Product</button>
+      <button class="btn btn-ghost" type="button" id="cancelEdit" hidden>Cancel Edit</button>
+      <p class="msg ok" id="formMsg"></p>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>Live Products</h2>
+    <table>
+      <thead><tr><th>Photo</th><th>Name</th><th>Category</th><th>Price</th><th>Actions</th></tr></thead>
+      <tbody id="prodRows"></tbody>
+    </table>
+    <p class="note" style="margin-top:1rem">Products, cart, orders and emails are stored in this browser (localStorage) so the demo store works anywhere. When the store moves to its live domain with a backend, the same panel connects to the real database.</p>
+  </div>
+
+  <div class="card">
+    <h2>Orders Received</h2>
+    <div id="orderList"></div>
+  </div>
+
+  <div class="card">
+    <h2>The Hide List (Newsletter)</h2>
+    <div id="newsList"></div>
+  </div>
+</div>
+
+<script>
+const LS = { p:'pf_products', o:'pf_orders', n:'pf_news' };
+const PASS = 'pellefina-admin';
+const load = (k,d)=>{ try{ const v=JSON.parse(localStorage.getItem(k)); return v??d; }catch{ return d; } };
+const save = (k,v)=>localStorage.setItem(k,JSON.stringify(v));
+const $ = s=>document.querySelector(s);
+
+function tryUnlock(){
+  if ($('#passInput').value === PASS){ sessionStorage.setItem('pf_admin','1'); showAdmin(); }
+  else $('#gateMsg').textContent = 'Wrong passcode — try again.';
+}
+$('#gateBtn').addEventListener('click', tryUnlock);
+$('#passInput').addEventListener('keydown', e=>{ if(e.key==='Enter') tryUnlock(); });
+$('#lockBtn').addEventListener('click', ()=>{ sessionStorage.removeItem('pf_admin'); location.reload(); });
+if (sessionStorage.getItem('pf_admin')==='1') showAdmin();
+
+function showAdmin(){ $('#gate').style.display='none'; $('#adminMain').hidden=false; renderAll(); }
+
+function renderAll(){ renderStats(); renderProducts(); renderOrders(); renderNews(); }
+function renderStats(){
+  const prods = load(LS.p, []), orders = load(LS.o, []), news = load(LS.n, []);
+  $('#stProducts').textContent = prods.length;
+  $('#stOrders').textContent = orders.length;
+  $('#stRevenue').textContent = '$' + orders.reduce((s,o)=>s+(o.totalUSD||0),0).toLocaleString();
+  $('#stNews').textContent = news.length;
+}
+function renderProducts(){
+  const prods = load(LS.p, []);
+  $('#prodRows').innerHTML = prods.map(p=>`<tr>
+    <td><img src="${p.img}" alt=""></td><td><strong>${p.name}</strong></td><td>${p.cat}</td><td>$${p.price}</td>
+    <td><button class="btn btn-dark mini" data-edit="${p.id}">Edit</button>
+        <button class="btn btn-red mini" data-del="${p.id}">Delete</button></td></tr>`).join('')
+    || '<tr><td colspan="5">No products yet — add your first piece above.</td></tr>';
+  document.querySelectorAll('[data-edit]').forEach(b=>b.addEventListener('click',()=>startEdit(b.dataset.edit)));
+  document.querySelectorAll('[data-del]').forEach(b=>b.addEventListener('click',()=>delProduct(b.dataset.del)));
+}
+function startEdit(id){
+  const p = load(LS.p, []).find(x=>x.id===id); if(!p) return;
+  $('#fId').value=p.id; $('#fName').value=p.name; $('#fCat').value=p.cat;
+  $('#fPrice').value=p.price; $('#fWas').value=p.was||0; $('#fBadge').value=p.badge||'';
+  $('#fColors').value=(p.colors||[]).join(', '); $('#fRating').value=p.rating||4.8; $('#fReviews').value=p.reviews||0;
+  $('#fImg').value = p.img && !p.img.startsWith('data:') ? p.img : '';
+  $('#fDesc').value=p.desc||''; $('#fFeats').value=(p.feats||[]).join('\n');
+  const pv=$('#fPreview'); pv.src=p.img; pv.style.display='block';
+  $('#formTitle').textContent='Edit Product'; $('#saveBtn').textContent='Save Changes'; $('#cancelEdit').hidden=false;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function resetForm(){
+  $('#prodForm').reset(); $('#fId').value=''; $('#fPreview').style.display='none';
+  $('#formTitle').textContent='Add a New Product'; $('#saveBtn').textContent='Add Product'; $('#cancelEdit').hidden=true;
+}
+$('#cancelEdit').addEventListener('click', resetForm);
+function delProduct(id){
+  if(!confirm('Delete this product from the store?')) return;
+  save(LS.p, load(LS.p, []).filter(x=>x.id!==id));
+  renderAll(); toast('Product deleted');
+}
+let uploadedData = '';
+$('#fFile').addEventListener('change', e=>{
+  const f = e.target.files[0]; if(!f) return;
+  const r = new FileReader();
+  r.onload = ()=>{ uploadedData = r.result; const pv=$('#fPreview'); pv.src=uploadedData; pv.style.display='block'; $('#fImg').value=''; };
+  r.readAsDataURL(f);
+});
+$('#fImg').addEventListener('input', e=>{ if(e.target.value){ uploadedData=''; const pv=$('#fPreview'); pv.src=e.target.value; pv.style.display='block'; } });
+$('#prodForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const prods = load(LS.p, []);
+  const id = $('#fId').value || 'p' + Date.now();
+  const img = uploadedData || $('#fImg').value.trim() || ( $('#fId').value ? (prods.find(x=>x.id===id)||{}).img : '' ) || 'assets/prod-tote.jpg';
+  const data = { id, name: $('#fName').value.trim(), cat: $('#fCat').value,
+    price: +$('#fPrice').value, was: +$('#fWas').value||0, badge: $('#fBadge').value.trim(),
+    colors: $('#fColors').value.split(',').map(s=>s.trim()).filter(Boolean),
+    rating: +$('#fRating').value||4.8, reviews: +$('#fReviews').value||0,
+    img, desc: $('#fDesc').value.trim(), feats: $('#fFeats').value.split('\n').map(s=>s.trim()).filter(Boolean) };
+  const idx = prods.findIndex(x=>x.id===id);
+  if (idx>=0) prods[idx]=data; else prods.push(data);
+  save(LS.p, prods); uploadedData=''; resetForm(); renderAll();
+  toast(idx>=0 ? 'Product updated ✓' : 'Product added to the store ✓');
+});
+function renderOrders(){
+  const orders = load(LS.o, []);
+  $('#orderList').innerHTML = orders.length ? orders.slice().reverse().map(o=>`<div class="order">
+    <h4>${o.num} — $${o.totalUSD} — ${o.name}</h4>
+    <p>${o.date} · ${o.country} · ${o.email} · ${o.phone}<br>${o.addr}, ${o.city} ${o.zip}${o.notes?'<br>Notes: '+o.notes:''}</p>
+    <ul>${(o.items||[]).map(i=>`<li>${i.name} × ${i.qty} — ${i.color||''}${i.emboss? ' · Embossed: '+i.emboss:''} — $${i.price*i.qty}</li>`).join('')}</ul>
+  </div>`).join('') : '<p class="note">No orders yet. Orders placed on the store checkout appear here.</p>';
+}
+function renderNews(){
+  const news = load(LS.n, []);
+  $('#newsList').innerHTML = news.length ? news.map(n=>`<p>${n.email} <span style="color:var(--mut)">— ${n.date}</span></p>`).join('') : '<p class="note">No subscribers yet.</p>';
+}
+function toast(m){ $('#formMsg').textContent=m; setTimeout(()=>$('#formMsg').textContent='',3000); }
+</script>
+</body>
+</html>

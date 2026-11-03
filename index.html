@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pellefina — The Finest Hide You'll Ever Hold</title>
+<meta name="description" content="Pellefina — premium full-grain leather goods. Bags, wallets, belts and jackets crafted to last a lifetime.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== Preloader ===== -->
+<div id="preloader">
+  <div class="pre-pf">PF</div>
+  <div class="pre-name">PELLEFINA</div>
+  <div class="pre-bar"><div></div></div>
+</div>
+<div id="cursorGlow"></div>
+
+<!-- ===== Announcement bar ===== -->
+<div class="topbar">
+  <div class="topbar-track">
+    <span>Free express shipping to the US &amp; UK on orders over $150</span>
+    <span class="dot">◆</span><span>Full-grain leather only — never bonded, never fake</span>
+    <span class="dot">◆</span><span>Lifetime craftsmanship guarantee</span>
+    <span class="dot">◆</span><span>Free express shipping to the US &amp; UK on orders over $150</span>
+    <span class="dot">◆</span><span>Full-grain leather only — never bonded, never fake</span>
+    <span class="dot">◆</span><span>Lifetime craftsmanship guarantee</span>
+  </div>
+</div>
+
+<!-- ===== Header ===== -->
+<header id="siteHeader">
+  <div class="header-in">
+    <button class="icon-btn burger" id="burgerBtn" aria-label="Menu">☰</button>
+    <nav class="main-nav" id="mainNav">
+      <a href="#" data-nav="home">Home</a>
+      <a href="#" data-nav="shop" data-cat="Bags">Bags</a>
+      <a href="#" data-nav="shop" data-cat="Wallets">Wallets</a>
+      <a href="#" data-nav="shop" data-cat="Accessories">Accessories</a>
+      <a href="#" data-nav="shop" data-cat="Apparel">Apparel</a>
+      <a href="#" data-nav="shop" data-cat="All">Shop All</a>
+    </nav>
+    <a class="brand" href="#" data-nav="home">
+      <span class="brand-mark">PF</span>
+      <span class="brand-text">PELLEFINA<small>The Finest Hide You'll Ever Hold</small></span>
+    </a>
+    <div class="header-actions">
+      <div class="currency-switch" role="group" aria-label="Currency">
+        <button id="curUSD" class="cur-btn active">USD $</button>
+        <button id="curGBP" class="cur-btn">GBP £</button>
+      </div>
+      <button class="icon-btn" id="searchBtn" aria-label="Search">⌕</button>
+      <button class="icon-btn" id="wishBtn" aria-label="Wishlist">♡<span class="badge" id="wishCount">0</span></button>
+      <button class="icon-btn" id="cartBtn" aria-label="Cart">🛍<span class="badge" id="cartCount">0</span></button>
+    </div>
+  </div>
+  <div class="search-bar" id="searchBar">
+    <input type="text" id="globalSearch" placeholder="Search leather goods… try 'wallet' or 'tote'">
+    <button id="searchGo">Search</button>
+  </div>
+</header>
+
+<main>
+<!-- ================= HOME VIEW ================= -->
+<section id="view-home" class="view active">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bgimg"></div>
+    <div class="hero-in">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Full-Grain Leather · Est. for Life</p>
+        <h1><span class="line"><span>Leather that</span></span><span class="line"><span><em>ages like a story</em>,</span></span><span class="line"><span>not like a product.</span></span></h1>
+        <p class="hero-sub">Every Pellefina piece is cut from the strongest layer of the hide, stitched to outlast trends, and guaranteed for a lifetime of carries.</p>
+        <div class="hero-cta">
+          <button class="btn btn-gold" data-nav="shop" data-cat="All">Shop the Collection</button>
+          <button class="btn btn-ghost" id="heroPatinaBtn">See It Age ↓</button>
+        </div>
+        <div class="hero-stats">
+          <div><strong data-count="100">0</strong><span>% Full-Grain Leather</span></div>
+          <div><strong data-count="40">0</strong><span>+ Stitches Per Inch Checked</span></div>
+          <div><strong data-count="25">0</strong><span>Year Craftsmanship Promise</span></div>
+        </div>
+      </div>
+      <div class="hero-stage reveal">
+        <div class="tilt-card" id="heroCard">
+          <img src="assets/hero-weekender.jpg" alt="Pellefina cognac leather weekender bag">
+          <div class="tilt-glare"></div>
+          <div class="hero-card-foot">
+            <div><strong>Voyager Weekender</strong><span>Full-grain cognac hide</span></div>
+            <div class="hero-price" data-price="459">$459</div>
+          </div>
+        </div>
+        <div class="float-badge fb1">◆ Hand-Finished Edges</div>
+        <div class="float-badge fb2">◆ Solid Brass Hardware</div>
+        <div class="float-pf">PF</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARQUEE -->
+  <div class="marquee"><div class="marquee-track" id="marqueeTrack"></div></div>
+
+  <div class="stitch" style="margin-top:2.6rem"></div>
+
+  <!-- COLLECTIONS -->
+  <section class="section">
+    <div class="section-head reveal">
+      <p class="eyebrow">Collections</p>
+      <h2>Carry it for decades</h2>
+    </div>
+    <div class="tiles">
+      <button class="tile reveal" data-nav="shop" data-cat="Bags"><img src="assets/prod-backpack.jpg" alt="Leather bags"><span>Bags &amp; Travel<small>Briefcases, totes, backpacks</small></span></button>
+      <button class="tile reveal" data-nav="shop" data-cat="Wallets"><img src="assets/prod-wallet.jpg" alt="Leather wallets"><span>Wallets<small>Bifolds &amp; card holders</small></span></button>
+      <button class="tile reveal" data-nav="shop" data-cat="Accessories"><img src="assets/prod-belt.jpg" alt="Leather accessories"><span>Accessories<small>Belts &amp; travel essentials</small></span></button>
+      <button class="tile reveal" data-nav="shop" data-cat="Apparel"><img src="assets/prod-jacket.jpg" alt="Leather apparel"><span>Apparel<small>Jackets built to break in</small></span></button>
+    </div>
+  </section>
+
+  <!-- FEATURED -->
+  <section class="section alt">
+    <div class="section-head reveal">
+      <p class="eyebrow">Featured</p>
+      <h2>Loved, carried, inherited</h2>
+      <button class="link-btn" data-nav="shop" data-cat="All">View all products →</button>
+    </div>
+    <div class="grid" id="featuredGrid"></div>
+  </section>
+
+  <!-- PATINA PREVIEW (new feature) -->
+  <section class="section patina" id="patinaSection">
+    <div class="section-head reveal">
+      <p class="eyebrow">Only at Pellefina</p>
+      <h2>The Patina Preview</h2>
+      <p class="section-sub">Real leather doesn't wear out — it wears <em>in</em>. Drag the slider and watch this hide grow richer, darker and more personal, the way yours will after years of carry.</p>
+    </div>
+    <div class="patina-box reveal">
+      <div class="patina-frame">
+        <img id="patinaImg" src="assets/prod-tote.jpg" alt="Leather tote patina preview">
+        <div class="patina-top" id="patinaTop"><img src="assets/prod-tote.jpg" alt=""></div>
+        <div class="patina-handle" id="patinaHandle"></div>
+        <div class="patina-labels"><span>Day One</span><span>Year Five</span></div>
+      </div>
+      <input type="range" id="patinaRange" min="0" max="100" value="0" aria-label="Patina age slider">
+      <p class="patina-readout" id="patinaReadout">Brand new — pale, matte, waiting for its first journey.</p>
+    </div>
+  </section>
+
+  <!-- LEATHER GRADE EXPLORER (new feature) -->
+  <section class="section alt">
+    <div class="section-head reveal">
+      <p class="eyebrow">Know Your Leather</p>
+      <h2>The Grade Explorer</h2>
+      <p class="section-sub">Most "leather" sold online is the bottom of the hide, sprayed and glued. Tap each grade and see exactly what you are paying for.</p>
+    </div>
+    <div class="grades reveal">
+      <div class="grade-tabs" id="gradeTabs"></div>
+      <div class="grade-panel" id="gradePanel"></div>
+    </div>
+  </section>
+
+  <!-- CRAFT STORY -->
+  <section class="section craft">
+    <div class="craft-in">
+      <div class="craft-img reveal"><img src="assets/craft-hands.jpg" alt="Artisan hands stitching leather"></div>
+      <div class="craft-copy reveal">
+        <p class="eyebrow">The Craft</p>
+        <h2>Two needles. One thread.<br>Zero shortcuts.</h2>
+        <p>Every Pellefina seam is saddle-stitched — two needles crossing through the same hole from opposite sides. If one stitch ever breaks, the other holds. Machine-locked seams unravel; ours endure.</p>
+        <ul class="tick-list">
+          <li>Cut from the bend of the hide — the tightest, strongest fibres</li>
+          <li>Edges bevelled, dyed and burnished by hand</li>
+          <li>Solid brass and steel hardware, never plated plastic</li>
+          <li>Inspected piece by piece before it leaves the bench</li>
+        </ul>
+        <button class="btn btn-dark" data-nav="shop" data-cat="All">Shop Handcrafted Pieces</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section alt">
+    <div class="section-head reveal">
+      <p class="eyebrow">From Our Customers</p>
+      <h2>Carried daily. Praised loudly.</h2>
+    </div>
+    <div class="quotes" id="quotesBox"></div>
+    <div class="quote-dots" id="quoteDots"></div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="section newsletter">
+    <div class="news-in reveal">
+      <h2>Join The Hide List</h2>
+      <p>Early access to limited hides, care rituals and members-only pricing. One letter a month, worth opening.</p>
+      <form id="newsForm">
+        <input type="email" id="newsEmail" placeholder="Your email address" required>
+        <button class="btn btn-gold" type="submit">Join the List</button>
+      </form>
+      <p class="news-msg" id="newsMsg"></p>
+    </div>
+  </section>
+</section>
+
+<!-- ================= SHOP VIEW ================= -->
+<section id="view-shop" class="view">
+  <div class="shop-head">
+    <p class="eyebrow">The Collection</p>
+    <h2 id="shopTitle">Shop All</h2>
+    <div class="shop-tools">
+      <input type="text" id="shopSearch" placeholder="Search products…">
+      <select id="shopCat"></select>
+      <select id="shopSort">
+        <option value="featured">Sort: Featured</option>
+        <option value="low">Price: Low to High</option>
+        <option value="high">Price: High to Low</option>
+        <option value="rating">Top Rated</option>
+        <option value="name">Name A–Z</option>
+      </select>
+      <div class="range-box">
+        <label>Max price <span id="rangeVal"></span></label>
+        <input type="range" id="priceRange" min="40" max="600" value="600">
+      </div>
+    </div>
+    <p class="shop-count" id="shopCount"></p>
+  </div>
+  <div class="grid shop-grid" id="shopGrid"></div>
+  <p class="empty-note" id="shopEmpty" hidden>No pieces match your search. Try a different word or category.</p>
+</section>
+
+<!-- ================= WISHLIST VIEW ================= -->
+<section id="view-wishlist" class="view">
+  <div class="shop-head">
+    <p class="eyebrow">Saved Pieces</p>
+    <h2>Your Wishlist</h2>
+    <p class="shop-count" id="wishEmpty">Nothing saved yet — tap the ♡ on any piece to keep it here.</p>
+  </div>
+  <div class="grid shop-grid" id="wishGrid"></div>
+</section>
+
+<!-- ================= CHECKOUT VIEW ================= -->
+<section id="view-checkout" class="view">
+  <div class="checkout-wrap">
+    <div class="co-form">
+      <p class="eyebrow">Almost Yours</p>
+      <h2>Checkout</h2>
+      <form id="checkoutForm">
+        <div class="frow">
+          <label>Full name<input required id="coName" placeholder="e.g. James Carter"></label>
+          <label>Phone<input required id="coPhone" placeholder="+1 / +44…"></label>
+        </div>
+        <label>Email<input required type="email" id="coEmail" placeholder="you@example.com"></label>
+        <label>Street address<input required id="coAddr" placeholder="House, street, apartment"></label>
+        <div class="frow">
+          <label>City<input required id="coCity"></label>
+          <label>Postal / ZIP code<input required id="coZip"></label>
+        </div>
+        <label>Country
+          <select id="coCountry"><option>United States</option><option>United Kingdom</option></select>
+        </label>
+        <label>Order notes (optional)<textarea id="coNotes" rows="2" placeholder="Anything we should know?"></textarea></label>
+        <div class="pay-note">Payment is arranged after your order is confirmed — our team contacts you with secure payment options for your country. No card details are taken on this page.</div>
+        <button class="btn btn-gold big" type="submit">Place Order</button>
+      </form>
+      <div class="order-done" id="orderDone" hidden>
+        <div class="done-mark">✓</div>
+        <h3>Order received</h3>
+        <p id="orderDoneText"></p>
+        <div class="done-actions">
+          <a class="btn btn-dark" id="waOrderBtn" target="_blank" rel="noopener">Send Order on WhatsApp</a>
+          <button class="btn btn-ghost dark" data-nav="shop" data-cat="All">Continue Shopping</button>
+        </div>
+      </div>
+    </div>
+    <aside class="co-summary">
+      <h3>Order Summary</h3>
+      <div id="coItems"></div>
+      <div class="co-lines">
+        <div><span>Subtotal</span><strong id="coSubtotal"></strong></div>
+        <div><span>Shipping</span><strong id="coShipping"></strong></div>
+        <div class="co-total"><span>Total</span><strong id="coTotal"></strong></div>
+      </div>
+      <p class="co-note">Free express shipping over $150 · 90-day returns · Lifetime craftsmanship guarantee</p>
+    </aside>
+  </div>
+</section>
+</main>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <span class="brand-mark light">PF</span>
+      <h4>PELLEFINA</h4>
+      <p>The Finest Hide You'll Ever Hold. Premium full-grain leather goods for the US &amp; UK — made to be carried for decades, then handed down.</p>
+    </div>
+    <div><h5>Shop</h5><a href="#" data-nav="shop" data-cat="Bags">Bags &amp; Travel</a><a href="#" data-nav="shop" data-cat="Wallets">Wallets</a><a href="#" data-nav="shop" data-cat="Accessories">Accessories</a><a href="#" data-nav="shop" data-cat="Apparel">Apparel</a></div>
+    <div><h5>Care &amp; Craft</h5><a href="#" id="footPatina">Patina Preview</a><a href="#" id="footGrades">Leather Grades</a><a href="admin.html">Store Admin</a></div>
+    <div><h5>Support</h5><a href="#" data-policy="shipping">Shipping &amp; Delivery</a><a href="#" data-policy="returns">Returns &amp; Exchanges</a><a href="#" data-policy="warranty">Lifetime Guarantee</a><a href="#" data-policy="privacy">Privacy Policy</a></div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Pellefina. All rights reserved.</span>
+    <span class="pay-icons">VISA · Mastercard · Amex · PayPal · Apple Pay</span>
+  </div>
+</footer>
+
+<!-- ===== Cart drawer ===== -->
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+  <div class="drawer-head">
+    <h3>Your Cart <span id="drawerCount"></span></h3>
+    <button class="icon-btn" id="drawerClose">✕</button>
+  </div>
+  <div class="ship-progress">
+    <p id="shipMsg"></p>
+    <div class="progress"><div id="shipBar"></div></div>
+  </div>
+  <div class="drawer-items" id="drawerItems"></div>
+  <div class="drawer-foot">
+    <div class="drawer-total"><span>Subtotal</span><strong id="drawerTotal"></strong></div>
+    <button class="btn btn-gold big" id="goCheckout">Proceed to Checkout</button>
+    <button class="btn btn-ghost dark" id="continueBtn">Continue Shopping</button>
+  </div>
+</aside>
+
+<!-- ===== Product modal ===== -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" role="dialog" aria-modal="true">
+    <button class="icon-btn modal-close" id="modalClose">✕</button>
+    <div class="modal-media">
+      <img id="mImg" src="" alt="">
+      <span class="modal-badge" id="mBadge"></span>
+    </div>
+    <div class="modal-body">
+      <p class="eyebrow" id="mCat"></p>
+      <h3 id="mName"></h3>
+      <div class="stars" id="mStars"></div>
+      <p class="modal-price" id="mPrice"></p>
+      <p class="modal-desc" id="mDesc"></p>
+      <ul class="modal-feats" id="mFeats"></ul>
+      <label class="fld">Leather colour
+        <select id="mColor"></select>
+      </label>
+      <label class="fld">Embossed initials (free, optional)
+        <input id="mEmboss" maxlength="3" placeholder="e.g. J.C.">
+      </label>
+      <div class="qty-row">
+        <div class="qty-box">
+          <button id="qMinus">−</button><span id="qVal">1</span><button id="qPlus">+</button>
+        </div>
+        <button class="btn btn-gold" id="mAddCart">Add to Cart</button>
+        <button class="icon-btn heart" id="mWish">♡</button>
+      </div>
+      <p class="modal-meta">Free express shipping over $150 · 90-day returns · Lifetime guarantee</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Policy modal ===== -->
+<div class="modal-overlay" id="policyOverlay">
+  <div class="modal policy">
+    <button class="icon-btn modal-close" id="policyClose">✕</button>
+    <h3 id="pTitle"></h3>
+    <div id="pBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

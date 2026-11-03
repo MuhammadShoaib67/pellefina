@@ -354,3 +354,11 @@ footer{background:#080604;color:#b7a888;border-top:1px solid var(--line-soft)}
   .currency-switch{display:none}
   .hero-stats{gap:1.3rem}
 }
+
+/* product rows (homepage) */
+#craftRows{margin-top:3.2rem;display:flex;flex-direction:column;gap:2.6rem}
+.p-row-head{display:flex;align-items:baseline;gap:1rem;margin-bottom:1rem;flex-wrap:wrap}
+.p-row-head h3{font-family:'Playfair Display',serif;font-size:1.55rem;color:var(--cream)}
+.p-row-head span{color:var(--muted,#b8a888);font-size:.9rem}
+.row-strip{display:flex;gap:1.1rem;overflow-x:auto;padding:.4rem .2rem 1rem;scroll-snap-type:x mandatory;scrollbar-width:thin}
+.row-strip .card{min-width:235px;max-width:235px;scroll-snap-align:start}

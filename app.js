@@ -118,8 +118,8 @@ const QUOTES = [
 
 const POLICIES = {
  shipping:{t:'Shipping & Delivery', b:['Every price on Pellefina already includes delivery — there are no shipping charges at checkout, on any order, anywhere in the world.','Pieces are handcrafted and dispatched from our Pakistan workshop; please allow around 12–17 business days in total for crafting and tracked international delivery.','You receive tracking by email the moment your order leaves our bench.']},
- returns:{t:'Returns & Exchanges', b:['You have 90 days to change your mind. Pieces must be unused and in their original condition.','To start a return, contact us on WhatsApp or email with your order number and we will guide you through it.','Refunds are issued to your original payment method within 7 days of the piece arriving back with us.']},
- warranty:{t:'Lifetime Guarantee', b:['Every Pellefina piece is guaranteed for life against defects in materials and craftsmanship.','If a stitch fails, a zip breaks or hardware gives way under normal use, we repair or replace the piece free of charge.','Leather ageing, patina and character marks are not defects — they are the signature of real full-grain hide.']},
+ returns:{t:'Returns & Exchanges', b:['You have 30 days to change your mind. Pieces must be unused and in their original condition.','To start a return, contact us on WhatsApp or email with your order number and we will guide you through it.','Refunds are issued to your original payment method within 7 days of the piece arriving back with us.']},
+ warranty:{t:'Our Craft Promise', b:['Every Pellefina piece is cut, stitched and finished by hand in small batches — never mass-produced.','Before dispatch, each piece passes a 12-point quality check: hide, stitching, hardware, zips and finish.','Leather ageing, patina and character marks are not defects — they are the signature of real full-grain hide.']},
  privacy:{t:'Privacy Policy', b:['We collect only the details needed to fulfil your order: name, contact information and delivery address.','Your details are never sold. They are used for delivery, order updates and — only if you join The Hide List — our monthly letter.','You may request deletion of your details at any time by contacting us.']},
 };
 
@@ -181,6 +181,31 @@ function cardHTML(p){
       </div>
     </div>
   </article>`;
+}
+
+function rotateHero(){
+  const cats = ['Jackets','Hair-On Jackets','Coats','Chaps','Hair-On Chaps','Bags','Hair-On Bags','Vests','Hair-On Vests'];
+  const pool = products.filter(p => cats.includes(p.cat));
+  if (!pool.length) return;
+  const p = pool[Math.floor(Math.random() * pool.length)];
+  const img = document.querySelector('#heroCard img');
+  if (img){ img.src = p.img; img.alt = 'Pellefina ' + p.name; }
+  const foot = document.querySelector('.hero-card-foot');
+  if (foot){
+    foot.querySelector('strong').textContent = p.name.split(' — ')[0];
+    foot.querySelector('span').textContent = p.cat + ' · Premium full-grain hide';
+    const pr = foot.querySelector('.hero-price');
+    pr.dataset.price = p.price; pr.textContent = money(p.price);
+  }
+}
+function renderCraftRows(){
+  const el = $('#craftRows'); if (!el) return;
+  const rows = [
+    {t:'Bestsellers', sub:'The pieces our customers reach for first', items: products.filter(p => p.badge === 'Bestseller').concat(products.filter(p => p.rating >= 4.9 && p.badge !== 'Bestseller')).slice(0, 8)},
+    {t:'The Hair-On Collection', sub:'Real cowhide — every pattern one of one', items: products.filter(p => p.cat.startsWith('Hair-On')).slice(0, 8)},
+    {t:'Everyday Essentials', sub:'Honest leather under $90', items: products.filter(p => p.price < 90).slice(0, 8)}
+  ];
+  el.innerHTML = rows.map(r => `<div class="p-row reveal"><div class="p-row-head"><h3>${r.t}</h3><span>${r.sub}</span></div><div class="row-strip">${r.items.map(cardHTML).join('')}</div></div>`).join('');
 }
 function renderFeatured(){ $('#featuredGrid').innerHTML = products.slice(0, 4).map(cardHTML).join(''); }
 
@@ -406,10 +431,10 @@ const cio = new IntersectionObserver(es => es.forEach(en => {
 document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
 
 /* marquee */
-$('#marqueeTrack').innerHTML = Array(2).fill(['Full-Grain Leather', 'Saddle-Stitched Seams', 'Solid Brass Hardware', 'Lifetime Guarantee', 'Free Worldwide Delivery — Always Included', '90-Day Returns'].map(t => `<span>${t} ◆</span>`).join('')).join('');
+$('#marqueeTrack').innerHTML = Array(2).fill(['Full-Grain Leather', 'Saddle-Stitched Seams', 'Solid Brass Hardware', 'Handcrafted in Small Batches', 'Free Worldwide Delivery — Always Included', '30-Day Easy Returns'].map(t => `<span>${t} ◆</span>`).join('')).join('');
 
 /* init */
-fillCats(); renderFeatured(); renderShop(); renderGrades(); renderQuotes(); restartQuotes(); updateBadges(); renderCart();
+fillCats(); renderFeatured(); rotateHero(); renderCraftRows(); renderShop(); renderGrades(); renderQuotes(); restartQuotes(); updateBadges(); renderCart();
 $('#curUSD').classList.toggle('active', currency === 'USD'); $('#curGBP').classList.toggle('active', currency === 'GBP'); refreshPrices();
 
 /* ---------- premium motion layer ---------- */

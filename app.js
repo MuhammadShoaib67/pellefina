@@ -225,7 +225,7 @@ function renderShop(){
   if (sort === 'name') list.sort((a, b) => a.name.localeCompare(b.name));
   $('#shopGrid').innerHTML = list.map(cardHTML).join('');
   $('#shopEmpty').hidden = list.length > 0;
-  $('#shopCount').textContent = list.length + (list.length === 1 ? ' piece' : ' pieces') + ' · full-grain leather, guaranteed for life';
+  $('#shopCount').textContent = list.length + (list.length === 1 ? ' piece' : ' pieces') + ' · full-grain leather, inspected piece by piece';
 }
 
 /* wishlist */

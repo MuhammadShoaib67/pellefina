@@ -349,10 +349,31 @@ footer{background:#080604;color:#b7a888;border-top:1px solid var(--line-soft)}
   #newsForm{flex-direction:column}
 }
 @media(max-width:560px){
-  .grid{grid-template-columns:1fr}
-  .tiles{grid-template-columns:1fr}
+  html,body{overflow-x:clip}
+  .grid{grid-template-columns:repeat(2,1fr);gap:.8rem}
+  .card-body{padding:.8rem .85rem 1rem}
+  .card h3{font-size:1rem;line-height:1.25}
+  .card .price-row{gap:.4rem;flex-wrap:wrap}
+  .add-btn{padding:.55rem .8rem;font-size:.82rem}
+  .tiles{grid-template-columns:repeat(2,1fr);gap:.8rem}
+  .tile{min-height:120px}
+  .tile span{font-size:1rem}
   .currency-switch{display:none}
   .hero-stats{gap:1.3rem}
+  .hero h1{font-size:2.35rem}
+  .topbar{font-size:.68rem}
+  .site-header{padding:.6rem .9rem}
+  .brand{gap:.5rem}
+  .brand-text strong{font-size:1.02rem;letter-spacing:.18em}
+  .brand-logo{width:42px;height:42px}
+  .icon-btn{width:34px;height:34px}
+  .header-actions{gap:.25rem}
+  .row-strip .card{min-width:190px;max-width:190px}
+  .cart-drawer{width:min(430px,100vw)}
+  .section{padding:3rem 1.1rem}
+  .foot-grid{grid-template-columns:1fr;gap:1.6rem}
+  .co-form .row2{grid-template-columns:1fr}
+  .p-row-head h3{font-size:1.3rem}
 }
 
 /* product rows (homepage) */
